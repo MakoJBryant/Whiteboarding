@@ -2,35 +2,33 @@
 // C library for performing input/output.
 #include <stdio.h>
 
+// Lab 5.5 Submission.
+void rotate_right(int size, int a[]) {
 
-// Lab 5.4 Submission.
-int find_min(int a[], int size) {
+	// Save last position of given array.
+	int temp = a[size - 1];
 
-    // Set initial min to first array element.
-    int min = a[0];
+	// Loop through array from last element to first element.
+	for (int i = (size - 2); i >= 0; i--)
+	{
+		// Set element to the right as current element.
+		a[i + 1] = a[i];
+	}
 
-    // For each element in the array.
-    for (int i = 0; i < size; i++)
-    {
-        // If the the current element is less than the current min.
-        if (a[i] < min)
-        {
-            // Set the min to the current value.
-            min = a[i];
-        }
-    }
-
-    // Return the min that was found.
-    return min;
+	// Set first value of array to saved last value.
+	a[0] = temp;
 }
-
 
 // Main Function.
 int main(void) {
-    int a[8] = { 4, 5, 3, 9, 5, 2, 7, 6 };
 
-    int min = find_min(a, 8);
-    printf("Smallest value: %i\n", min);
+	// Create array and call function to rotate.
+	int a[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+	rotate_right(10, a);
 
-    return 0;
+	// Print array.
+	for (int i = 0; i < 10; i++)
+		printf("%d\t", a[i]);
+
+	return 0;
 }
