@@ -2,33 +2,37 @@
 // C library for performing input/output.
 #include <stdio.h>
 
-// Lab 5.5 Submission.
-void rotate_right(int size, int a[]) {
+// Reverses the order of all values of any array.
+void reverse(int size, int a[]) {
 
-	// Save last position of given array.
-	int temp = a[size - 1];
+    // Loop through half of the array.
+    for (int i = 0; i < (size / 2); i++)
+    {
+        // Store current element value temporarily.
+        int temp = a[i];
 
-	// Loop through array from last element to first element.
-	for (int i = (size - 2); i >= 0; i--)
-	{
-		// Set element to the right as current element.
-		a[i + 1] = a[i];
-	}
+        // Set current element as (i) away from last element
+        a[i] = a[size - 1 - i];
 
-	// Set first value of array to saved last value.
-	a[0] = temp;
+        // Set (i) away from first element as stored value.
+        a[size - 1 - i] = temp;
+
+    }
 }
 
-// Main Function.
+// Main function.
 int main(void) {
+    int a[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+    int b[5] = { 1, 11, 22, 33, 44 };
 
-	// Create array and call function to rotate.
-	int a[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-	rotate_right(10, a);
+    reverse(10, a);
+    reverse(5, b);
 
-	// Print array.
-	for (int i = 0; i < 10; i++)
-		printf("%d\t", a[i]);
+    for (int i = 0; i < 10; i++)
+        printf("%d\t", a[i]);
 
-	return 0;
+    printf("\n\n");
+
+    for (int i = 0; i < 5; i++)
+        printf("%d\t", b[i]);
 }
