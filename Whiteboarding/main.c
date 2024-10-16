@@ -2,37 +2,29 @@
 // C library for performing input/output.
 #include <stdio.h>
 
-// Reverses the order of all values of any array.
-void reverse(int size, int a[]) {
 
-    // Loop through half of the array.
-    for (int i = 0; i < (size / 2); i++)
-    {
-        // Store current element value temporarily.
-        int temp = a[i];
-
-        // Set current element as (i) away from last element
-        a[i] = a[size - 1 - i];
-
-        // Set (i) away from first element as stored value.
-        a[size - 1 - i] = temp;
-
-    }
-}
-
-// Main function.
+// Fill in the code to copy the content of array `a` into array `b` not using a loop:
 int main(void) {
-    int a[10] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-    int b[5] = { 1, 11, 22, 33, 44 };
 
-    reverse(10, a);
-    reverse(5, b);
+    int a[5] = { 1, 2, 3, 4, 5 };
+    int b[5] = { 0 };
 
-    for (int i = 0; i < 10; i++)
-        printf("%d\t", a[i]);
+    //your code here
+    b[0] = a[0];
+    printf("%d", b[0]);
 
-    printf("\n\n");
+    b[1] = a[1];
+    printf("%d", b[1]);
+    
+    b[2] = a[2];
+    printf("%d", b[2]);
+    
+    b[3] = a[3];
+    printf("%d", b[3]);
+    
+    b[4] = a[4];
+    printf("%d", b[4]);
 
-    for (int i = 0; i < 5; i++)
-        printf("%d\t", b[i]);
+    return 0;
+
 }
