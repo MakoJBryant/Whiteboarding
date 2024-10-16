@@ -5,49 +5,35 @@
 
 /*
 Write a function that does the following:
-Name: 		copy
-Parameters: int, size: the size of the arrays to be copied
-            int array, input: the array continaing the data to be copied
-            int array, output: the array to recieve the data
-Return: 	none
-Note:		This is a copy function t, exactly what we wrote in class
+Name: 		find_max
+Parameters: int, size: the size of the array
+            int array, a: the array in which the function searches for the largest number
+Return: 	int, the largest number within the array
+Note:		This is a find_max function, very similar what we wrote in class
 */
 
-void copy(int size, int arrayInput[], int arrayOutput[]) {
+int find_max(int array[], int size) {
+
+    int max = 0;
 
     for (int i = 0; i < size; i++)
     {
-        arrayOutput[i] = arrayInput[i];
+        if (max < array[i]) {
+            max = array[i];
+        }
     }
 
-    return;
-}
-
-void print_array(int size, int array[]) {
-
-    for (int i = 0; i < size; i++)
-    {
-        int temp = array[i];
-        printf("%d", temp);
-    }
-
-    return;
+    return max;
 }
 
 int main(void) {
+    int a[8] = { 4, 5, 3, 9, 5, 2, 7, 6 };
 
-    int a[5] = { 1, 2, 3, 4, 5 };
-    int b[5] = { 0 };
-
-    copy(5, a, b);
-    print_array(5, b);
+    int max = find_max(a, 8);
+    printf("Largest value: %i\n", max);
 
     //this should now be true
-    //b[0] == 1
-    //b[1] == 2
-    //b[2] == 3
-    //b[3] == 4
-    //b[4] == 5
+    //max == 9
 
     return 0;
 }
