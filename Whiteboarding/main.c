@@ -10,10 +10,11 @@ void copy(int size, int* input, int* output) {
 
 // Print an array without using the [] operator.
 void print(int size, int* output) {
-	for (int i = 0; i < size; i++)
+	for (int i = 0; i < size - 1; i++)
 	{
-		printf("%d", *(output + i));
+		printf("%d, ", *(output + i));
 	}
+	printf("%d", *(output + size - 1));
 }
 
 // Main function.
