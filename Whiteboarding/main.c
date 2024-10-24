@@ -1,39 +1,31 @@
-
-// C library for performing input/output.
 #include <stdio.h>
 
-
-/*
-Write a function that does the following:
-Name: 		find_max
-Parameters: int, size: the size of the array
-            int array, a: the array in which the function searches for the largest number
-Return: 	int, the largest number within the array
-Note:		This is a find_max function, very similar what we wrote in class
-*/
-
-int find_max(int array[], int size) {
-
-    int max = 0;
-
-    for (int i = 0; i < size; i++)
-    {
-        if (max < array[i]) {
-            max = array[i];
-        }
-    }
-
-    return max;
+// Copy one array into another without using the [] operator.
+void copy(int size, int* input, int* output) {
+	for (int i = 0; i < size; i++)
+	{
+		*(output + i) = *(input + i);
+	}
 }
 
+// Print an array without using the [] operator.
+void print(int size, int* output) {
+	for (int i = 0; i < size; i++)
+	{
+		printf("%d", *(output + i));
+	}
+}
+
+// Main function.
 int main(void) {
-    int a[8] = { 4, 5, 3, 9, 5, 2, 7, 6 };
 
-    int max = find_max(a, 8);
-    printf("Largest value: %i\n", max);
+	int input[10] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 };
+	int output[10] = { 0 };
 
-    //this should now be true
-    //max == 9
+	copy(10, input, output); //implement this function!
+	print(10, output); //implement this function!
+	//prints: 1, 2, 3, 4, 5, 6, 7, 8, 9, 10
 
-    return 0;
+	return 0;
+
 }
