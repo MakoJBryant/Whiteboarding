@@ -1,109 +1,88 @@
 #include <stdio.h>
 
-void sort(int size, int* a);
-int sorted(int size, int* a);
-void insert_sorted(int size, int* a, int* b);
-void reverse(int size, int* a);
-void copy(int size, int* input, int* output);
-void print(int size, int* a);
+// Declare functions.
+int* getSmallestVar(int* var0, int* var1, int* var2);
+int* getMiddleVar(int* var0, int* var1, int* var2);
+int* getLargestVar(int* var0, int* var1, int* var2);
 
-// Main function.
+
 int main(void) {
 
-	int a[10] = { -4, 1, 7, 2, 5, 6, 3, -8, 9, -2 };
-	int b[10] = { 0 };
+	//make the code work for any values for a, b, c
+	int a = 55451;
+	int b = 12;
+	int c = 8846463;
 
-	insert_sorted(10, a, b); //implement this function!
-	print(10, b); //implement this function!
-	//prints: -8, -4, -2, 1, 2, 3, 5, 6, 7, 9
+	int* min_var = 0;
+	int* mid_var = 0;
+	int* max_var = 0;
+
+	min_var = getSmallestVar(&a, &b, &c);
+	mid_var = getMiddleVar(&a, &b, &c);
+	max_var = getLargestVar(&a, &b, &c);
+
+	printf("min: %d\n", *min_var);
+	printf("mid: %d\n", *mid_var);
+	printf("max: %d\n", *max_var);
 
 	return 0;
 }
 
-// Sort an array from least (at left) to most (at right).
-void sort(int size, int* a) {
+// Get the pointer of the smallest variable.
+int* getSmallestVar(int* var0, int* var1, int* var2) {
 
-	// While array is not sorted:
-	while (!sorted(size, a)) {
+	// Pass the pointer var0 into a temp pointer.
+	int* min_var = var0;
 
-		// For each element of the array:
-		for (int i = 0; i < size - 1; i++)
-		{
-
-			// If the current index is greater than the next index:
-			if (*(a + i) > *(a + i + 1)) {
-
-				// Save value of array at current index.
-				int temp = *(a + i);
-
-				// Set value at current index to value at next index.
-				*(a + i) = *(a + i + 1);
-
-				// Set value at next index with original value at current index.
-				*(a + i + 1) = temp;
-			}
-		}
+	if (*var1 < *min_var) {
+		// Set min value variable to var1.
+		min_var = var1;
 	}
-}
-
-// Check if a given array is sorted without using [] operator.
-int sorted(int size, int* a) {
-
-	// Loop through array from first element to last:
-	for (int i = 0; i < size; i++) {
-
-		// If current element is less than previous element:
-		if (*(a + i) < *(a + i - 1)) {
-
-			// Array is not sorted.
-			return 0;
-		}
-	}
-
-	// Array is sorted.
-	return 1;
-}
-
-// Sort an array without using the [] operator.
-void insert_sorted(int size, int* a, int* b) {
-
-	// Copy array a into array b.
-	copy(size, a, b);
 	
-	// Sort array b.
-	sort(size, b);
-}
-
-// Reverse an array without using the [] operator.
-void reverse(int size, int* a) {
-
-	// Loop through half of the array.
-	for (int i = 0; i < (size / 2); i++)
-	{
-		// Store current element value temporarily.
-		int temp = *(a + i);
-
-		// Set current element as (i) away from last element.
-		*(a + i) = *(a + size - 1 - i);
-
-		// Set (i) away from first element as stored value.
-		*(a + size - 1 - i) = temp;
+	if (*var2 < *min_var) {
+		// Set min value variable to var2.
+		min_var = var2;
 	}
+
+	return min_var;
 }
 
-// Copy one array into another without using the [] operator.
-void copy(int size, int* input, int* output) {
-	for (int i = 0; i < size; i++)
-	{
-		*(output + i) = *(input + i);
+// Get the pointer of the middle variable.
+int* getMiddleVar(int* var0, int* var1, int* var2) {
+
+	int* smallestVar = getSmallestVar(var0, var1, var2);
+	int* largestVar = getLargestVar(var0, var1, var2);
+	int* mid_var = var0;
+
+	if (*var1 > *smallestVar && *var1 < *largestVar) {
+		// If var1 isn't smallest or largest, it's the mid.
+		mid_var = var1;
 	}
+	if (*var2 > *smallestVar && *var2 < *largestVar) {
+		// If var2 isn't smallest or largest, it's the mid.
+		mid_var = var2;
+	}
+	
+	// If var1 and var2 aren't the mid, then it's var0.
+	return mid_var;
 }
 
-// Print an array without using the [] operator.
-void print(int size, int* a) {
-	for (int i = 0; i < size - 1; i++)
-	{
-		printf("%d, ", *(a + i));
+// Get the pointer of the largest variable.
+int* getLargestVar(int* var0, int* var1, int* var2) {
+
+	// Pass the pointer var0 into a temp pointer.
+	int* max_var = var0;
+
+	if (*var1 > *max_var) {
+		// Set max value variable to var1.
+		max_var = var1;
 	}
-	printf("%d", *(a + size - 1));
+
+	if (*var2 > *max_var) {
+		// Set max value variable to var2.
+		max_var = var2;
+	}
+
+	return max_var;
 }
+
